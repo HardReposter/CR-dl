@@ -69,6 +69,11 @@ module.exports = function processVideo(input, metadata, subtitles, output, optio
             }
         });
 
+        proc.on('error', function(err, stdout, stderr) {
+            console.log("ffmpeg stdout:\n" + stdout);
+            console.log("ffmpeg stderr:\n" + stderr);
+          });
+
         proc.on('close', (code) => {
             if (bar1) {
                 bar1.stop();
